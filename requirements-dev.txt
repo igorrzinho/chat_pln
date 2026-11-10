@@ -8,3 +8,8 @@ pydantic-settings>=2.6
 
 # Dependências de teste
 pytest>=8.0
+
+# Aula 2 — API e observabilidade
+fastapi>=0.115       # framework para criar a API (rotas, validação, /docs)
+uvicorn>=0.30        # servidor que "liga" a API e atende os pedidos HTTP
+langfuse>=4.0        # registra cada conversa (traces) no painel do Langfuse
