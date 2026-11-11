@@ -1,7 +1,16 @@
 # FinBot
 
 Assistente educacional para aprender conceitos sobre investimentos no Brasil. Este projeto está sendo desenvolvido passo a passo como parte das aulas.
+## Links do projeto
 
+| O quê | Link |
+|---|---|
+| Chat publicado (Streamlit Cloud) | [Front-end](https://chatpln-igorzinho.streamlit.app/) |
+| API publicada (Render) | [Back-API](https://finbot-api-qtfp.onrender.com) |
+| Documentação da API | [Back-Docs](https://finbot-api-qtfp.onrender.com/docs) |
+| GitHub Projeto | [GitHub](https://github.com/igorrzinho/chat_pln) |
+
+No plano gratuito, a API "dorme" depois de um tempo sem uso: a primeira pergunta pode demorar cerca de 1 minuto.
 ## Etapa atual
 
 Na Aula 1, o projeto tem uma conversa inicial pelo terminal. O FinBot responde a perguntas gerais sobre investimentos e mantém o histórico durante a conversa.
