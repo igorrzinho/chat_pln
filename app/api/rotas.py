@@ -1,8 +1,7 @@
 # app/api/rotas.py
 """Rotas (endpoints) da API. Cada função = um endereço + um método HTTP."""
+from app.api.schemas import Mensagem, Pergunta, Resposta, Perfil
 from fastapi import APIRouter
-
-from app.api.schemas import Mensagem, Pergunta, Resposta
 from app.config.settings import settings
 from app.servicos import chat
 
@@ -25,9 +24,24 @@ def perguntar(p: Pergunta):
     # A rota só traduz HTTP: quem faz o trabalho é a camada de serviço.
     return chat.perguntar(p.mensagem, p.sessao, p.usuario)
 
-
 # {sessao} no endereço vira o parâmetro "sessao" da função (ex.: /sessoes/abc/mensagens).
 @router.get("/sessoes/{sessao}/mensagens", response_model=list[Mensagem])
 def mensagens(sessao: str):
     """Devolve o histórico de mensagens de uma sessão."""
     return chat.historico(sessao)
+
+# Lista as conversas do usuário (para a barra lateral).
+@router.get("/usuarios/{usuario}/conversas")
+def conversas(usuario: str):
+    return chat.listar_conversas(usuario)
+
+# Lê o perfil do usuário.
+@router.get("/usuarios/{usuario}/perfil")
+def ver_perfil(usuario: str):
+    return chat.obter_perfil(usuario)
+
+# PUT = substitui o perfil pelo que foi enviado (validado pelo schema Perfil).
+@router.put("/usuarios/{usuario}/perfil")
+def salvar_perfil(usuario: str, perfil: Perfil):
+    # model_dump() transforma o objeto Pydantic em dicionário.
+    return chat.salvar_perfil(usuario, perfil.model_dump())
