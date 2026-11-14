@@ -42,7 +42,10 @@ class Settings(BaseSettings):
 
     mongo_url: str = "mongodb://localhost:27017"
     mongo_banco: str = "finbot"
-
+    
+    brapi_token: SecretStr | None = None
+    max_passos_agente: int = 5  
+    
     @property
     def modelo(self) -> str:
         return self.llm_modelo or MODELOS_PADRAO[self.llm_provedor]
